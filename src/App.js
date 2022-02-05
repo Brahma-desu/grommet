@@ -1,6 +1,10 @@
 import React from 'react';
 import './App.css';
-import { Accordion,AccordionPanel,Anchor, Box,Card,CardHeader,CardFooter,CardBody,Grommet,Grid,Footer,Text, Nav,Button, Header,Tip, Tabs, Tab, CheckBoxGroup, Paragraph, DateInput, FileInput, Form, FormField, TextInput, RadioButtonGroup, RangeInput, Select, TextArea, Avatar, Calendar, Clock, DataTable, Heading, Distribution, NameValueList, NameValuePair, Pagination, Meter} from 'grommet';
+import { Accordion,AccordionPanel,Anchor, Box,Card,CardHeader,CardFooter,CardBody,Grommet,Grid,
+  Footer,Text,Table, Nav,Button, Header,Tip, Tabs, Tab, CheckBoxGroup, Paragraph, DateInput,
+   FileInput, Form, FormField, TextInput, RadioButtonGroup, RangeInput, Select, TextArea, Avatar,
+    Calendar, Clock, DataTable, Heading, Distribution, NameValueList, NameValuePair, Pagination, Meter, 
+    Spinner, TableHeader, TableRow, TableCell, TableBody, WorldMap, Carousel, Collapsible, } from 'grommet';
 //import { } from 'grommet-icons';
 import {
     Grommet as GrommetIcon,
@@ -14,6 +18,10 @@ import {
     Favorite,
     ShareOption,
     Search,
+   
+    Car,
+    TreeOption,
+
   } from 'grommet-icons';
 
     const UserImage = "https://wallpaperaccess.com/full/5118783.jpg";
@@ -86,6 +94,7 @@ import {
 function App() {
   const [value , setValue] = React.useState(5);
   const onChange = event => setValue(event.target.value);
+  const [open, setOpen] = React.useState(false);
   return (
     
     <Grommet>
@@ -95,7 +104,7 @@ function App() {
        </Paragraph>
       </Box> */}
     <Grid
-     rows={['xxsmall', 'xlarge', 'xsmall']}
+     rows={['xxsmall', 'xxlarge', 'medium']}
       columns={['1/4']}
       areas={[
         ['header', 'header'],
@@ -170,6 +179,28 @@ function App() {
           <Box align='center' justify='center' pad='small'>
             <Heading level='3'>Data Table</Heading> 
             <DataTable columns={cloumns} data={Data} />
+          </Box>
+          <Box align='center' direction='row' justify='center' height='medium' width='medium'>
+            <Carousel>
+              <Box background='accent-1' pad='large'>
+                  <TreeOption />
+              </Box>
+              <Box background='accent-4' pad='large'>
+                  <Car />
+              </Box>
+              <Box background='accent-2' pad='large'>
+                  <UserFemale />
+
+              </Box>
+            </Carousel>
+         </Box>
+          <Box align='center'>
+            <Button onClick={() => setOpen(!open)} label='Toggle'/>
+             <Collapsible open={open}>
+                 <Box background='dark-2' round='medium' pad='medium' align='center' justify='center'>
+                   <Text>This is a inside a Collapsible Component</Text>
+                 </Box>
+             </Collapsible>
           </Box>
       </Box>
 
@@ -265,7 +296,38 @@ function App() {
             </NameValuePair>
           </NameValueList>
           <Pagination justify='center' align='center' numberItems={200} />
-          <Meter type='circle' />
+          <Box direction='row' pad='small'>
+            <Meter type='circle' background='light-1' values={[{value:40},{value:30},{value:20}]} size='xsmall' />
+            <Spinner size='large' />
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableCell scope='col'>
+                    Name
+                  </TableCell>
+                  <TableCell scope='col'>
+                    Village
+                  </TableCell>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell scope='row'>
+                    <strong>Desu Brahma</strong>
+                  </TableCell>
+                  <TableCell>Sirigaripalli</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell scope='row'>
+                    <strong>Sri Ram</strong>
+                  </TableCell>
+                  <TableCell>Kadiri</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Box>
+          <WorldMap color='graph-1' />
+          
    </Box>
        
    <Box background="dark-3" gridArea="footer" justify="center">
